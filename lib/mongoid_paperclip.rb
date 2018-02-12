@@ -19,8 +19,8 @@ end
 # mongoid criteria uses a different syntax.
 module Paperclip
   module Helpers
-    def each_instance_with_attachment(klass, name)
-      class_for(klass).unscoped.where("#{name}_file_name".to_sym.ne => nil).each do |instance|
+    def each_instance_with_attachment(klass, name)                
+      class_for(klass).unscoped.where.not("#{name}_file_name".to_sym => nil).each do |instance|
         yield(instance)
       end
     end
